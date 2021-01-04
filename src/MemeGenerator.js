@@ -4,35 +4,34 @@ import MemeList from "./MemeList"
 class MemeGenerator extends Component {
     constructor() {
         super()
-        this.state = {
+         this.state = {
             topText: "",
             bottomText: "",
             currentMeme: {
                 id: '',
                 url : '',
-            },
+                },
             allMemeImgs: [],
             //why?
             //randomImg: "",
             memeList: []
-        }
+            }
+
         this.handleChange = this.handleChange.bind(this);
         this.refresh = this.refresh.bind(this);
         this.addMeme = this.addMeme.bind(this);
-     //   this.getRandomImg = this.getRandomImg.bind(this);
         this.handleEdit = this.handleEdit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+       this.tryAnotherEdit = this.tryAnotherEdit.bind(this)
     }
 
-    // getRandomImg(){
-    //     console.log("im in get random img...heres the length of allmemes ", this.state.allMemeImgs.length )
 
-    // }
     
     componentDidMount() {
         fetch("https://api.imgflip.com/get_memes")
             .then(response => response.json())
             .then(response => {
+                console.log(response.data);
                 const {memes} = response.data;
                 this.setState({ 
                     allMemeImgs: memes,  
@@ -44,6 +43,7 @@ class MemeGenerator extends Component {
 
     addMeme(evt) {
         evt.preventDefault();
+
         console.log(this.state.currentMeme);
         const newMeme = {
             topText : this.state.topText,
@@ -76,7 +76,6 @@ class MemeGenerator extends Component {
             bottomText: "",
             currentMeme: this.state.allMemeImgs[Math.floor(Math.random() * this.state.allMemeImgs.length)]
         })
-        console.log("Refreshing")
     }
 
 
@@ -111,6 +110,7 @@ class MemeGenerator extends Component {
     }
 
     render() {
+
         // TODO: map the memelist to render all memes on the page
     
 
@@ -127,6 +127,7 @@ class MemeGenerator extends Component {
         })
 
         console.log(this.state.currentMeme);
+
         return (
             <div className = 'row'>
                 <div className = 'column one'>
@@ -163,7 +164,7 @@ class MemeGenerator extends Component {
                 <div className = 'column two'>
                     {memeList}
                 </div>
-               
+
             </div>
         )
     }

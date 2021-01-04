@@ -28,11 +28,23 @@ header > p {
     margin-left: 60px;
 }
 
+.all-memes{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+
+.all-memes img{
+    height: 200px;
+}
+
 .meme {
     position: relative;
     width: 75%;
     margin: auto;
 }
+
+
 
 .meme > img {
     width: 75%;
