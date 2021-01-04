@@ -12,8 +12,6 @@ class MemeGenerator extends Component {
                 url : '',
                 },
             allMemeImgs: [],
-            //why?
-            //randomImg: "",
             memeList: []
             }
 
@@ -78,7 +76,18 @@ class MemeGenerator extends Component {
         })
     }
 
+    tryAnotherEdit(memeId, stringOne, stringTwo){
+        this.setState(prevState =>{
+            let memeIndex = prevState.memeList.findIndex(meme => meme.id === memeId.id)
+            let editedArray = [...prevState.memeList]
+            console.log(editedArray[memeIndex])
+            editedArray[memeIndex] = {...editedArray[memeIndex], topText:stringOne, bottomText : stringTwo}
+            console.log(editedArray[memeIndex])
+            return{...prevState, memeList : editedArray}
 
+            
+        })
+    }
 
     
     handleEdit(meme){
